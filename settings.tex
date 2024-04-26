@@ -1,0 +1,56 @@
+% 本文档命令
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{varwidth}
+\usepackage{enumitem, amssymb}
+\usepackage{pifont}
+\usepackage{ulem}
+\usepackage[chapter]{minted}
+\usepackage{multicol}
+\usepackage[utf8]{inputenc}
+\usepackage{glossaries}
+\usepackage{float}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{noto}
+\usepackage{diagbox}
+\usepackage{tablefootnote}
+\usepackage{todonotes}
+
+% 修改程序清单的配置
+\renewcommand\listingscaption{代码清单}
+\renewcommand\listoflistingscaption{代码清单列表}
+% 修改minted的默认设置
+\setminted{autogobble=true, bgcolor=lightgray,fontsize=\footnotesize, linenos,baselinestretch=.5}
+\setminted[bash]{autogobble=true,bgcolor=lightgray}
+\setminted[c]{autogobble=true,bgcolor=lightgray}
+\setminted[python]{autogobble=true,bgcolor=lightgray}
+\setminted[text]{autogobble=true,bgcolor=lightgray,breaklines=true}
+
+\newcommand{\reflst}[1]{\listingscaption~\ref{#1}}
+\newcommand{\reffig}[1]{\figurename~\ref{#1}}
+\newcommand{\reftab}[1]{\tablename~\ref{#1}}
+
+\newcommand{\task}{\item[\ding{113}]}
+\newcommand{\done}[1]{\item[\ding{52}] \sout{#1}}
+
+\newcommand{\imghere}[3][scale=1.0]{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[#1]{#2}
+    \caption{#3}
+  \end{figure}
+}
+
+% 多栏有序列表环境
+\newenvironment{multicolenum}[2][A.]{
+  \begin{multicols}{#2}
+  \begin{enumerate}[#1]}{
+  \end{enumerate}
+  \end{multicols}
+  }
+
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}

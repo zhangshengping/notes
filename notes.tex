@@ -1,0 +1,61 @@
+\documentclass[lang=cn,9pt, twocol]{elegantbook}
+% remark 环境修改为楷体
+\renewenvironment{remark}{\noindent\textbf{\color{second}\remarkname}\kaishu}{\par}
+\title{个人笔记}
+
+\author{Otter}
+\institute{一个游荡的灵魂}
+\date{\zhtoday}
+\version{0.1.0}
+% \bioinfo{自定义}{信息}
+
+\extrainfo{笔记}
+
+\setcounter{tocdepth}{3}
+
+\logo{otter.jpg}
+\cover{maple-1280x1024.jpg}
+
+\input{settings.tex}
+
+
+% 修改标题页的橙色带
+% \definecolor{customcolor}{RGB}{32,178,170}
+% \colorlet{coverlinecolor}{customcolor}
+
+\begin{document}
+
+\currentpdfbookmark{封面}{cover}
+\maketitle
+
+
+% 前言
+\frontmatter
+\currentpdfbookmark{待完善清单}{todo list}
+\include{task}
+% 目录
+\currentpdfbookmark{目录}{contents}
+\tableofcontents
+
+% 书籍主体
+\mainmatter
+\hypersetup{linkcolor=blue}
+
+% 导入文件不需要后缀
+\part{编程语言}
+\include{python}
+
+\part{工具使用}
+
+\part{读书笔记}
+
+% 附录
+\appendix
+\listoflistings
+\listoffigures
+\listoftables
+
+% 后记
+\backmatter
+
+\end{document}
