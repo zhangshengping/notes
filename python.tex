@@ -3,5 +3,14 @@
 \section{元组/数组/字典/集合}
 
 \begin{itemize}
-    \item \emph{in} 查找的速度
+    \item \mintinline{python}{in}的查找速度
+    \begin{itemize}
+        \item 速度：字典>集合>数组 
+        \item 将数据放入字典中查找的样例程序:
+        \begin{minted}{python}
+            values = dict.fromkeys((1,2,3))
+            if 2 in values:
+                print(2)
+        \end{minted}
+    \end{itemize}
 \end{itemize}

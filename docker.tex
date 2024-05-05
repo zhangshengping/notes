@@ -1,0 +1,58 @@
+\chapter{Docker使用笔记}
+\section{常用命令}
+\begin{itemize}
+    \item 启动和管理容器
+    \begin{itemize}
+        \item 挂载卷并接入bash
+        \begin{minted}{bash}
+            docker run -v ~/source:/source -it embuild:last bash
+        \end{minted}
+        \item 罗列所有容器 
+        \begin{minted}{bash}
+        docker ps -a 
+        docker ps -aq #只显示ID  
+        \end{minted}
+        \item 停止所有容器
+        \mint{bash}|docker stop $(docker ps -aq)|
+        \item 删除所有容器
+        \mint{bash}|docker rm $(docker ps -aq)|
+        \item 容器与主机之间拷贝文件
+        \begin{minted}{bash}
+            docker cp mycontainer:/opt/file.txt /opt/local # 将容器中的文件拷贝到主机里面
+            docker cp /opt/local/file.txt mycontainer:/opt/ # 将主机中文件拷贝到容器
+        \end{minted}
+        \item 指定运行时的工作目录
+        \mint{bash}|docker run -w /tmp -it ubuntu:22.04 bash|
+        \item 构建时使用代理
+        \begin{minted}{bash}
+            docker build --build-arg http_proxy=http://192.168.3.3.10809\
+                --build-arg https_proxy=http://192.168.3.3:10809 -t go:1.20.5 .
+        \end{minted}
+        \item 将镜像保存到文件和从文件加载镜像
+        \begin{minted}{bash}
+            docker save [image-id] > xxxx.tar # 保存镜像
+            docker load -i xxxx.tar # 从文件加载镜像
+            # 使用gzip加压
+            docker save mysql:8.0.32 |gzip > mysql_8_0_32.tar.gz
+            gunzip -c mysql_8_8_32.tar.gz | docker load 
+        \end{minted}
+        \item 指定工作目录
+        \mint{bash}|docker run -v `pwd`:/root/fixed-rtk -w /root/fixed-rtk -it xxxxx:latest bash|
+        \item 使用本地用户信息在容器中新建用户运行
+        \mint{bash}|docker run --user $(id -u ${USER}):$(id -g ${USER})  <其他参数>|
+    \end{itemize}
+    \item 制作容器镜像
+        \begin{minted}{Dockerfile}
+            FROM ubuntu:20.04
+            COPY ./segger_embedded_studio /segger_embedded_studio
+            RUN apt-get update && \
+                apt-get install python3 -y && \
+                apt-get install python3-pip -y && \
+                apt-get install -y --no-install-recommends libx11-6 \
+                    libfreetype6 libxrender1 libfontconfig1 libxext6 &&\
+                pip3 install --trusted-host https://repo.huaweicloud.com \
+                    -i https://repo.huaweicloud.com/repository/pypi/simple intelhex
+            ENV PATH $PATH:/segger_embedded_studio/bin
+        \end{minted}
+        执行命令:\mint{bash}|docker build -t cmocka:lastest .|
+\end{itemize}

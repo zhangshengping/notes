@@ -1,0 +1,21 @@
+\chapter{elf 文件解析}
+
+\section{参考连接}
+\begin{itemize}  
+    \item \href{https://www.openeuler.org/zh/blog/lijiajie128/2020-11-03-ELF文件格式解析.html}{ELF文件格式解析(博客)}
+    \item \href{https://github.com/eliben/pyelftools}{pyelftools}
+    \item \href{https://dwarfstd.org/doc/DWARF5.pdf}{DWARF 5标准}
+\end{itemize}
+
+\section{pyelftools使用入门}
+
+\subsection{准备cortex-m4的elf文件}
+
+这里使用NXP Kinetis K60FX的MCU例程来生成elf文件,
+使用到的东西有：
+\begin{itemize}
+    \item \href{https://developer.arm.com/-/media/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-arm-none-eabi.tar.xz}{arm-none-eabi-gcc工具链}
+    \item \href{https://mcuxpresso.nxp.com/}{NXP的SDK包}
+    \item arm-none-eabi-gcc的样例程序\footnote{位于安装目录的 share/gcc-arm-none-eabi/samples 目录中}
+\end{itemize}
+

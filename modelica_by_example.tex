@@ -1,0 +1,17 @@
+\chapter{Modelica By Example(中译《Modelica 实例教程》)}
+
+\section{OpenModelica的安装}
+\begin{enumerate}
+    \item 安装官网指导安装;
+    \begin{itemize}
+        \item \href{https://openmodelica.org/download/download-linux/}{linux}
+        \item \href{https://openmodelica.org/download/download-windows/}{Windows}
+        \item \href{https://openmodelica.org/download/download-mac/}{Mac}
+    \end{itemize}
+    \item linux系统需要手动下载modelica的库;
+          位于\mintinline{bash}{~/.openmodelica/libraries}目录中,\\
+          文件\mintinline{bash}{~/.openmodelica/libraries/index.json}中有每个库对应的sha和下载链接.
+          由于国内环境的问题，可能无法直接下载，可以根据openmodelica报错提示的sha，从index.json中找到下载链接，然后
+          使用proxychains将文件下载到\mintinline{bash}{~/.openmodelica/cache}中。
+
+\end{enumerate}
